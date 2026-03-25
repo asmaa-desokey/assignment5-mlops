@@ -1,30 +1,10 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-import os
->>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
->>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
 import mlflow
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-<<<<<<< HEAD
 
 mlflow.set_tracking_uri("file:./mlruns")
-=======
-<<<<<<< HEAD
-
-mlflow.set_tracking_uri("file:./mlruns")
-=======
-import mlflow
-mlflow.set_tracking_uri("file:./mlruns")
-tracking_uri = os.environ.get("MLFLOW_TRACKING_URI", "file:./mlruns")
-mlflow.set_tracking_uri(tracking_uri)
-
->>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
->>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
 mlflow.set_experiment("mlops-assignment")
 
 X, y = load_iris(return_X_y=True)
@@ -34,7 +14,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 with mlflow.start_run() as run:
-    model = LogisticRegression(max_iter=200)
+    model = RandomForestClassifier(n_estimators=200, random_state=42)
     model.fit(X_train, y_train)
 
     predictions = model.predict(X_test)
@@ -44,7 +24,7 @@ with mlflow.start_run() as run:
 
     run_id = run.info.run_id
 
-    with open("model_info.txt", "w", encoding="utf-8") as f:
+    with open("model_info.txt", "w") as f:
         f.write(run_id)
 
     print("Run ID:", run_id)
