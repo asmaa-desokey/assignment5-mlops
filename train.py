@@ -1,12 +1,8 @@
-import os
 import mlflow
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-
-# Set MLflow tracking
-mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
 
 mlflow.set_experiment("mlops-assignment")
 
