@@ -1,7 +1,8 @@
 import sys
 import mlflow
 from mlflow.tracking import MlflowClient
-
+import mlflow
+mlflow.set_tracking_uri("file:./mlruns")
 THRESHOLD = 0.85
 
 with open("model_info.txt", "r", encoding="utf-8") as f:
