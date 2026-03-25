@@ -1,2 +1,11 @@
 mlflow
+<<<<<<< HEAD
 scikit-learn
+=======
+<<<<<<< HEAD
+scikit-learn
+=======
+scikit-learn
+dvc
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209

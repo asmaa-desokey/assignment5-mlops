@@ -2,15 +2,37 @@ name: Full CI/CD Pipeline
 
 on:
   push:
+<<<<<<< HEAD
     branches-ignore:
       - main
   pull_request:
 
 jobs:
+=======
+<<<<<<< HEAD
+    branches-ignore:
+      - main
+  pull_request:
+
+jobs:
+=======
+    branches: [main]
+
+jobs:
+
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
   validate:
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -23,6 +45,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
       - name: Train model
         run: python train.py
@@ -34,12 +59,32 @@ jobs:
           path: |
             model_info.txt
             mlruns
+=======
+          pip install mlflow
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
+
+      - name: Train model
+        run: python train.py
+
+      - name: Upload Run ID and MLflow files
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-info
+<<<<<<< HEAD
+          path: |
+            model_info.txt
+            mlruns
+=======
+          path: model_info.txt
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
 
   deploy:
     needs: validate
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -54,12 +99,49 @@ jobs:
           pip install -r requirements.txt
 
       - name: Download Run ID and MLflow files
+=======
+<<<<<<< HEAD
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download Run ID and MLflow files
+=======
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Run ID
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
         uses: actions/download-artifact@v4
         with:
           name: model-info
 
-      - name: Check accuracy
+<<<<<<< HEAD
+      - name: Check accuracy threshold
         run: python check_threshold.py
 
       - name: Mock Docker Build
         run: echo "Building Docker image for Run ID: $(cat model_info.txt)"
+=======
+      - name: Check accuracy
+        run: python check_threshold.py
+
+      - name: Mock Docker Build
+<<<<<<< HEAD
+        run: echo "Building Docker image for Run ID: $(cat model_info.txt)"
+=======
+        run: |
+          echo "Building Docker image for Run ID: $(cat model_info.txt)"
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
+>>>>>>> c780de52df7fc268e66f363d53794cb960cb8209
