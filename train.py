@@ -1,10 +1,22 @@
+<<<<<<< HEAD
+=======
+import os
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
 import mlflow
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+<<<<<<< HEAD
 
 mlflow.set_tracking_uri("file:./mlruns")
+=======
+import mlflow
+mlflow.set_tracking_uri("file:./mlruns")
+tracking_uri = os.environ.get("MLFLOW_TRACKING_URI", "file:./mlruns")
+mlflow.set_tracking_uri(tracking_uri)
+
+>>>>>>> e9f2b0cd8a8a966081178761bef57d67fc516064
 mlflow.set_experiment("mlops-assignment")
 
 X, y = load_iris(return_X_y=True)
