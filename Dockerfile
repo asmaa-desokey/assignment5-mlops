@@ -1,9 +1,9 @@
 FROM python:3.10-slim
 
 ARG RUN_ID
+ENV RUN_ID=${RUN_ID}
 
 WORKDIR /app
 
-RUN echo "Downloading model for RUN_ID=${RUN_ID}"
-
-CMD ["sh", "-c", "echo Model container ready for RUN_ID=${RUN_ID}"]
+RUN echo "Preparing container for MLflow Run ID: ${RUN_ID}"
+CMD echo "Downloading model for Run ID: ${RUN_ID} (mock)"
